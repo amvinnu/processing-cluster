@@ -1,0 +1,45 @@
+<configuration>
+
+  <property>
+   <name>mapreduce.framework.name</name>
+   <value>yarn</value>
+  </property>
+  
+  <property>
+    <name>mapreduce.map.speculative</name>
+    <value>false</value>
+  </property>
+
+  <property>
+    <name>mapreduce.reduce.speculative</name>
+    <value>false</value>
+  </property>
+
+  <property>
+   <name>mapreduce.jobhistory.address</name>
+   <value>__MASTER__:10020</value>
+  </property>
+
+  <property>
+   <name>mapreduce.jobhistory.webapp.address</name>
+   <value>0.0.0.0:19888</value>
+  </property>
+
+  <property>
+    <description>To set the value of tmp directory for map and reduce tasks.</description>
+    <name>mapreduce.task.tmp.dir</name>
+    <value>/var/lib/hadoop-mapreduce/cache/${user.name}/tasks</value>
+  </property>
+  
+  <property>
+    <name>mapreduce.jobhistory.intermediate-done-dir</name>
+    <value>/user/history/done_intermediate</value>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.done-dir</name>
+    <value>/user/history/done</value>
+  </property>
+
+</configuration>
+
