@@ -12,3 +12,6 @@ EXPOSE 50070 50470 9000 50075 50475 50010 50020 50090
 # YARN ports
 EXPOSE 8088 8031 8032 8033 50060
 
+ADD files /root/hadoop_worker_files
+
+ENTRYPOINT ["/root/hadoop_worker_files/default_cmd"]

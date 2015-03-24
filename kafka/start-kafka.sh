@@ -34,6 +34,8 @@ do
   fi
 done
 
+echo "delete.topic.enable=true" >> $KAFKA_HOME/config/server.properties
+
 $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
 
 # while loop below so we get a chance to restart kafka while we are in the container shell to aid in debugging issues

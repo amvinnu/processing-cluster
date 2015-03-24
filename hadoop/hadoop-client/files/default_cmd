@@ -1,19 +1,19 @@
 #!/bin/bash
 
-source /root/spark_files/configure_spark.sh
+source /root/hadoop_files/configure_hadoop.sh
 
 IP=$(ip -o -4 addr list eth0 | perl -n -e 'if (m{inet\s([\d\.]+)\/\d+\s}xms) { print $1 }')
 echo "CLIENT_IP=$IP"
 
-echo "preparing Spark"
+echo "preparing Hadoop"
 if [ -z "$MASTER_HOST" ]; then
   echo "Defining MASTER_HOST is mandatory !"
   exit 1
 fi
 
-cp /root/spark_client_files/oozie-site.xml /etc/oozie/conf
+cp /root/hadoop_client_files/oozie-site.xml /etc/oozie/conf
 
-prepare_spark $MASTER_HOST
+prepare_hadoop $MASTER_HOST
 
 echo "starting sshd"
 /usr/sbin/sshd
@@ -27,7 +27,7 @@ su - hdfs -c "hadoop fs -chmod 775 /user"
 su - hdfs -c "hadoop fs -chown oozie:hadoop /user/oozie"
 su - hdfs -c "hadoop fs -ls /user/oozie" | grep -q /user/oozie/share || /usr/bin/oozie-setup sharelib create -fs hdfs://$MASTER_HOST:9000 -locallib /usr/lib/oozie/oozie-sharelib-yarn.tar.gz
 
-echo "starting Spark Client"
-cp /root/spark_client_files/run_spark_client.sh /
-chmod a+rx /run_spark_client.sh
-/run_spark_client.sh
+echo "starting Hadoop Client"
+cp /root/hadoop_client_files/run_hadoop_client.sh /
+chmod a+rx /run_hadoop_client.sh
+/run_hadoop_client.sh

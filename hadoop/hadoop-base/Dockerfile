@@ -19,7 +19,6 @@ RUN yum install -y hadoop-mapreduce hadoop-0.20-mapreduce hadoop-client
 RUN sed -i s/"files dns"/"dns files"/ /etc/nsswitch.conf
 
 ADD hadoop-files /root/hadoop_files
-ADD spark-files /root/spark_files
 
 RUN chmod +x /root/hadoop_files/*.sh
-RUN chmod +x /root/spark_files/*.sh
+

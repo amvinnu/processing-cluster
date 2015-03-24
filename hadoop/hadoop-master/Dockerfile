@@ -18,3 +18,9 @@ EXPOSE 8088 8031 8032 8033 50060
 
 # ZK ports
 EXPOSE 2181 2888 3888
+
+ADD files /root/hadoop_master_files
+
+RUN chmod +x /root/hadoop_master_files/default_cmd
+
+ENTRYPOINT ["/root/hadoop_master_files/default_cmd"]

@@ -29,15 +29,14 @@ done
 
 docker images | grep -q skydns  || docker pull crosbymichael/skydns
 docker images | grep -q skydock || docker pull crosbymichael/skydock
+docker images | grep -q kafka-web-console || docker pull hwestphal/kafka-web-console
 
 docker build -t ${NAMESPACE}base base
 
 docker build -t ${NAMESPACE}hadoop-base   hadoop/hadoop-base
 docker build -t ${NAMESPACE}hadoop-worker hadoop/hadoop-worker
 docker build -t ${NAMESPACE}hadoop-master hadoop/hadoop-master
-
-docker build -t ${NAMESPACE}spark-master spark/spark-master
-docker build -t ${NAMESPACE}spark-worker spark/spark-worker
-docker build -t ${NAMESPACE}spark-client spark/spark-client
+docker build -t ${NAMESPACE}hadoop-client hadoop/hadoop-client
 
 docker build -t ${NAMESPACE}kafka kafka
+

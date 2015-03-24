@@ -1,17 +1,17 @@
 #!/bin/bash
 
-source /root/spark_files/configure_spark.sh
+source /root/hadoop_files/configure_hadoop.sh
 
 IP=$(ip -o -4 addr list eth0 | perl -n -e 'if (m{inet\s([\d\.]+)\/\d+\s}xms) { print $1 }')
 echo "WORKER_IP=$IP"
 
-echo "preparing Spark"
+echo "preparing Hadoop"
 if [ -z "$MASTER_HOST" ]; then
   echo "Defining MASTER_HOST is mandatory !"
   exit 1
 fi
 
-prepare_spark $MASTER_HOST
+prepare_hadoop $MASTER_HOST
 
 echo "starting Hadoop Worker services"
 service hadoop-hdfs-datanode start
@@ -22,7 +22,7 @@ echo "starting sshd"
 
 sleep 5
 
-echo "starting Spark Worker"
-cp /root/spark_worker_files/run_spark_worker.sh /
-chmod a+rx /run_spark_worker.sh
-/run_spark_worker.sh
+echo "starting Hadoop Worker"
+cp /root/hadoop_worker_files/run_hadoop_worker.sh /
+chmod a+rx /run_hadoop_worker.sh
+/run_hadoop_worker.sh

@@ -6,18 +6,18 @@ echo "starting to configure"
 
 env
 
-source /root/spark_files/configure_spark.sh
+source /root/hadoop_files/configure_hadoop.sh
 
 IP=$(ip -o -4 addr list eth0 | perl -n -e 'if (m{inet\s([\d\.]+)\/\d+\s}xms) { print $1 }')
 echo "MASTER_IP=$IP"
 
-echo "preparing Spark"
+echo "preparing Hadoop"
 if [ -z "$MASTER_HOST" ]; then
   echo "Defining MASTER_HOST is mandatory !"
   exit 1
 fi
 
-prepare_spark $MASTER_HOST
+prepare_hadoop $MASTER_HOST
 
 echo "starting Hadoop Master services"
 su - hdfs -c "/usr/bin/hdfs namenode -format"
@@ -37,7 +37,7 @@ echo "starting sshd"
 
 sleep 5
 
-echo "starting Spark Master"
-cp /root/spark_master_files/run_spark_master.sh /
-chmod a+rx /run_spark_master.sh
-/run_spark_master.sh
+echo "starting Hadoop Master"
+cp /root/hadoop_master_files/run_hadoop_master.sh /
+chmod a+rx /run_hadoop_master.sh
+/run_hadoop_master.sh
