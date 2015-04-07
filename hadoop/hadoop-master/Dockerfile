@@ -4,7 +4,7 @@
 FROM hadoop-base
 
 # Hadoop
-RUN yum install -y hadoop-hdfs-namenode hadoop-yarn-resourcemanager hadoop-mapreduce-historyserver
+RUN yum install -y hadoop-hdfs-namenode hadoop-yarn-resourcemanager hadoop-mapreduce-historyserver spark-history-server
 
 # Zookeeper
 RUN yum install -y zookeeper-server

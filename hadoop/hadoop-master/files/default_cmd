@@ -32,6 +32,12 @@ service hadoop-yarn-resourcemanager start
 service hadoop-mapreduce-historyserver start 
 service zookeeper-server start
 
+su - hdfs -c "hadoop fs -mkdir -p hdfs:///user/spark/applicationHistory"
+su - hdfs -c "hadoop fs -chmod 775 /user"
+su - hdfs -c "hadoop fs -chown -R spark:spark /user/spark"
+
+service spark-history-server start 
+
 echo "starting sshd"
 /usr/sbin/sshd
 
